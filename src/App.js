@@ -9,7 +9,7 @@ import StoryView from './pages/StoryView';
 
 function App() {
   const [isAuth, setIsAuth] = useState(true);
-
+  console.log(isAuth);
   return (
     <div className="App">
       <Routes>
