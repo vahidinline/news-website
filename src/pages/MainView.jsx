@@ -23,12 +23,10 @@ const MainView = () => {
     },
   ];
 
-  console.log(keyword);
   const getNews = () => {
     axios
       .get(keyword === 'us' ? searchMode[0].top : searchMode[1].search)
       .then((e) => {
-        console.log(e.data.articles);
         setNews(e.data.articles);
       })
       .catch((e) => {

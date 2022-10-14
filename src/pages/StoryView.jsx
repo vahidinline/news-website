@@ -6,10 +6,8 @@ import { Box, Container } from '@mui/system';
 const theme = createTheme();
 
 const StoryView = (props) => {
-  console.log('props', props);
   const location = useLocation();
   const data = location.state?.data;
-  console.log('data', data.urlToImage);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

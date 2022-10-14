@@ -8,12 +8,11 @@ import { useState } from 'react';
 import StoryView from './pages/StoryView';
 
 function App() {
-  const [isAuth, setIsAuth] = useState(true);
-  console.log(isAuth);
+  const [isAuth, setIsAuth] = useState(false);
+
   return (
     <div className="App">
       <Routes>
-        =
         <Route path="/" element={<Login />} />
         <Route path="/main" element={<MainView setIsAuth={setIsAuth} />} />
         <Route

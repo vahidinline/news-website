@@ -4,9 +4,7 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
@@ -21,7 +19,7 @@ export default function Login() {
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
-      password: data.get('password'),
+      token: data.get('api'),
     });
   };
 
@@ -54,7 +52,6 @@ export default function Login() {
               id="email"
               label="Email Address"
               name="email"
-              autoComplete="email"
               autoFocus
             />
             <TextField
@@ -65,7 +62,6 @@ export default function Login() {
               label="API Token"
               type="text"
               id="text"
-              autoComplete="current-password"
             />
             <FormControlLabel
               control={
