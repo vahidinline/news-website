@@ -11,13 +11,14 @@ export const tokenSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.user.value = action.payload;
+      state.user.email = action.payload;
     },
     logout: (state) => {
-      state.user.email = null;
+      state.user = null;
     },
   },
 });
 
 export const { login, logout } = tokenSlice.actions;
-export const selectUser = (state) => state.token.user.value;
+export const selectUser = (state) => state.token.user;
 export default tokenSlice.reducer;

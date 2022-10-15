@@ -3,6 +3,8 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  MenuItem,
+  Select,
   TextField,
 } from '@mui/material';
 import axios from 'axios';
@@ -13,7 +15,7 @@ import { Link } from 'react-router-dom';
 const MainView = () => {
   const [news, setNews] = useState([]);
   const { value } = useSelector((state) => state.token.user.value);
-  console.log('api token', value);
+  const { email } = useSelector((state) => state.token.user.email);
   const [keyword, setKeyword] = useState('us');
   const searchMode = [
     {
@@ -37,6 +39,10 @@ const MainView = () => {
   useEffect(() => {
     getNews();
   }, [keyword]);
+
+  const handleChange = (event) => {
+    setKeyword(event.target.value);
+  };
   return (
     <div>
       <Grid sx={{ mt: 3 }}>
@@ -51,6 +57,18 @@ const MainView = () => {
           placeholder="Search..."
           size="small"
         />
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={keyword}
+          label="Language"
+          onChange={handleChange}>
+          <MenuItem value="ca">CA</MenuItem>
+          <MenuItem value="il">IL</MenuItem>
+          <MenuItem value="jp">JP</MenuItem>
+          <MenuItem value="us">US</MenuItem>
+          <MenuItem value="ru">RU</MenuItem>
+        </Select>
       </Grid>
 
       <ul>
