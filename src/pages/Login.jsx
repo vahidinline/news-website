@@ -10,17 +10,24 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
+import { login } from '../redux/userAPI';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const [email, setEmail] = React.useState('');
+  const [apiToken, setApiToken] = React.useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      token: data.get('api'),
-    });
+    navigate(`/main`);
+
+    // console.log(email, apiToken);
+    dispatch(login({ email: email, value: apiToken }));
   };
 
   return (
@@ -53,6 +60,7 @@ export default function Login() {
               label="Email Address"
               name="email"
               autoFocus
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -61,6 +69,7 @@ export default function Login() {
               name="api"
               label="API Token"
               type="text"
+              onChange={(e) => setApiToken(e.target.value)}
               id="text"
             />
             <FormControlLabel

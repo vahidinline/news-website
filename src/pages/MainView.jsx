@@ -12,7 +12,8 @@ import { Link } from 'react-router-dom';
 
 const MainView = () => {
   const [news, setNews] = useState([]);
-  const { value } = useSelector((state) => state.token);
+  const { value } = useSelector((state) => state.token.user.value);
+  console.log('api token', value);
   const [keyword, setKeyword] = useState('us');
   const searchMode = [
     {
@@ -38,7 +39,7 @@ const MainView = () => {
   }, [keyword]);
   return (
     <div>
-      <Grid>
+      <Grid sx={{ mt: 3 }}>
         <TextField
           id="search-bar"
           className="text"
