@@ -7,17 +7,19 @@ import { login } from '../redux/userAPI';
 
 const ProfileView = () => {
   const { email } = useSelector((state) => state.token.user.email);
+  const { value } = useSelector((state) => state.token.user.value);
+
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  //const [email, setEmail] = React.useState('');
+  const [name, setName] = React.useState('');
   const [apiToken, setApiToken] = React.useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
     navigate(`/main`);
 
     // console.log(email, apiToken);
-    dispatch(login({ email: email, value: apiToken }));
+    dispatch(login({ name: name, value: apiToken }));
   };
 
   return (
@@ -34,12 +36,13 @@ const ProfileView = () => {
           label="Email Address"
           name="email"
           autoFocus
-          //onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
         />
         <TextField
           margin="normal"
           required
           fullWidth
+          defaultValue={value}
           name="api"
           label="API Token"
           type="text"

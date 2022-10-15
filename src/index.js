@@ -4,23 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import { store } from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
 import Navbar from './components/Navbar';
-// import { PersistGate } from 'redux-persist/integration/react';
-// import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 console.log('index state', store.getState());
-// let persistor = persistStore(store);
+let persistor = persistStore(store);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <PersistGate loading={null} persistor={persistor}> */}
-      <BrowserRouter>
-        <Navbar />
-        <App />
-      </BrowserRouter>
-      {/* </PersistGate> */}
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <Navbar />
+          <App />
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
