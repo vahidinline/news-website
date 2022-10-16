@@ -8,14 +8,12 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export default function Navbar() {
-  const { name } = useSelector((state) => state.token.user.name);
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News for {name}
+            News for
           </Typography>
           <Button color="inherit">
             <Link

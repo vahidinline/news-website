@@ -17,8 +17,8 @@ const StoryView = (props) => {
             <Grid container spacing={5} sx={{ mt: 3 }}>
               <Grid item xs={12} md={12}>
                 <Typography variant="h3">{data.title}</Typography>
-                <Typography variant="h6">{data.publishedAt}</Typography>
-                <Typography variant="h6">{data.author}</Typography>
+                <Typography variant="caption">{data.publishedAt}</Typography>
+                <Typography variant="body">Author : {data.author}</Typography>
               </Grid>
             </Grid>
             <Grid item xs={12} md={12}>

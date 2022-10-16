@@ -6,7 +6,7 @@ export const tokenSlice = createSlice({
     user: {
       value: '',
       email: '',
-      name: '',
+      name: 'user',
     },
   },
   reducers: {

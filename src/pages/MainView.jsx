@@ -1,11 +1,20 @@
+import { ExpandMore } from '@mui/icons-material';
 import {
+  Avatar,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  CardMedia,
   Grid,
+  IconButton,
   ListItem,
   ListItemButton,
   ListItemText,
   MenuItem,
   Select,
   TextField,
+  Typography,
 } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -15,7 +24,7 @@ import { Link } from 'react-router-dom';
 const MainView = () => {
   const [news, setNews] = useState([]);
   const { value } = useSelector((state) => state.token.user.value);
-  const { email } = useSelector((state) => state.token.user.email);
+  // const { email } = useSelector((state) => state.token.user.email);
   const [keyword, setKeyword] = useState('us');
   const searchMode = [
     {
@@ -43,6 +52,7 @@ const MainView = () => {
   const handleChange = (event) => {
     setKeyword(event.target.value);
   };
+
   return (
     <div>
       <Grid sx={{ mt: 3 }}>
@@ -71,23 +81,49 @@ const MainView = () => {
         </Select>
       </Grid>
 
-      <ul>
+      <Grid container>
         {news.map((e, i) => {
           return (
-            <ListItem key={i} component="div" disablePadding>
-              <ListItemButton>
-                <Link
-                  style={{ textDecoration: 'none', color: 'black' }}
-                  to={`/story/:${i}`}
-                  state={{ data: e }}
-                  className="link">
-                  <ListItemText primary={e.title} />
-                </Link>
-              </ListItemButton>
-            </ListItem>
+            <Card sx={{ maxWidth: 345, m: 1 }}>
+              <CardMedia
+                component="img"
+                height="194"
+                image={e.urlToImage}
+                alt={e.title}
+              />
+              <Link
+                style={{ textDecoration: 'none', color: 'black' }}
+                to={`/story/:${i}`}
+                state={{ data: e }}
+                className="link">
+                <CardHeader
+                  avatar={
+                    <Avatar
+                      sx={{ bgcolor: 'red', width: 100, height: 100 }}
+                      variant="square"
+                      aria-label="recipe">
+                      {e.source.name}
+                    </Avatar>
+                  }
+                  action={<IconButton aria-label="settings"></IconButton>}
+                  title={e.title}
+                  subheader={e.publishedAt.toLocaleString()}
+                />
+              </Link>
+
+              <CardContent>
+                <Typography variant="body2" color="text.secondary">
+                  {e.description}
+                </Typography>
+              </CardContent>
+              <CardActions disableSpacing>
+                <IconButton aria-label="add to favorites"></IconButton>
+                <IconButton aria-label="share"></IconButton>
+              </CardActions>
+            </Card>
           );
         })}
-      </ul>
+      </Grid>
     </div>
   );
 };

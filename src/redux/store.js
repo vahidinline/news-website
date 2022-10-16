@@ -1,20 +1,21 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage';
+import { configureStore } from '@reduxjs/toolkit';
+// import storage from 'redux-persist/lib/storage';
 
 import tokenReducer from './userAPI';
-import { persistReducer } from 'redux-persist';
+// import { persistReducer } from 'redux-persist';
+// import { CombinedState } from '@reduxjs/toolkit';
 
-const persistConfig = {
-  key: 'token',
-  storage,
-};
+// const persistConfig = {
+//   key: 'token',
+//   storage,
+// };
 
-const reducer = combineReducers({
-  token: tokenReducer,
-});
+// const reducer = combineReducers({});
 
-const persistedReducer = persistReducer(persistConfig, reducer);
+// const persistedReducer = persistReducer(persistConfig, reducers);
 
-export const store = configureStore({
-  reducer: persistedReducer,
+export default configureStore({
+  reducer: {
+    token: tokenReducer,
+  },
 });
