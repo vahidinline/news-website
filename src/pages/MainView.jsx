@@ -24,6 +24,7 @@ const localDate = (e) => {
 const MainView = () => {
   const [news, setNews] = useState([]);
   const { value } = useSelector((state) => state.token.user);
+  console.log(value);
   const [error, setError] = useState(false);
   const [msg, setMsg] = useState('');
   // const { email } = useSelector((state) => state.token.user.email);
