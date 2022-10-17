@@ -4,6 +4,7 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
+  CircularProgress,
   Grid,
   IconButton,
   MenuItem,
@@ -16,7 +17,10 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Error from '../components/Error';
-
+const localDate = (e) => {
+  const localDate = new Date(e);
+  return localDate.toLocaleString();
+};
 const MainView = () => {
   const [news, setNews] = useState([]);
   const { value } = useSelector((state) => state.token.user);
@@ -24,6 +28,7 @@ const MainView = () => {
   const [msg, setMsg] = useState('');
   // const { email } = useSelector((state) => state.token.user.email);
   const [keyword, setKeyword] = useState('us');
+  const [loading, setLoading] = useState(true);
   const searchMode = [
     {
       top: `http://newsapi.org/v2/top-headlines?country=us&apiKey=${value}`,
@@ -38,6 +43,7 @@ const MainView = () => {
       .get(keyword === 'us' ? searchMode[0].top : searchMode[1].search)
       .then((e) => {
         setNews(e.data.articles);
+        setLoading(false);
       })
       .catch((e) => {
         setError(true);
@@ -51,10 +57,13 @@ const MainView = () => {
   const handleChange = (event) => {
     setKeyword(event.target.value);
   };
-
+  const handleClose = () => {
+    setError(false);
+  };
   return (
     <div>
-      <Error open={error} handleClose={false} message={msg} />;
+      <Error open={error} message={msg} handleClose={handleClose} />
+      {loading ? <CircularProgress /> : null}
       <Grid sx={{ mt: 3 }}>
         <TextField
           id="search-bar"
@@ -111,7 +120,7 @@ const MainView = () => {
                   }
                   action={<IconButton aria-label="settings"></IconButton>}
                   title={e.title}
-                  subheader={e.publishedAt.toLocaleString()}
+                  subheader={localDate(e.publishedAt)}
                 />
               </Link>
 

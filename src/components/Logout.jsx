@@ -10,9 +10,15 @@ const Logout = () => {
   };
 
   return (
-    <Button onClick={(e) => handleLogout(e)} fullWidth variant="contained">
-      Logout
-    </Button>
+    <>
+      <Button
+        size="small"
+        onClick={(e) => handleLogout(e)}
+        variant="text"
+        color="inherit">
+        Logout
+      </Button>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Breadcrumbs, Card, Grid, Typography } from '@mui/material';
+import { Breadcrumbs, Grid, Typography } from '@mui/material';
 import { Box, Container } from '@mui/system';
 const theme = createTheme();
 const localDate = (date) => {
@@ -27,41 +27,37 @@ const StoryView = (props) => {
           <Grid>
             <Grid container spacing={1} sx={{ mt: 3 }}>
               <Grid item xs={12} md={10}>
-                <Card sx={{ mt: 2 }}>
-                  <Grid item xs={12}>
-                    <Typography sx={{}}> Author : {data.author}</Typography>
-                  </Grid>
-                  <Box
-                    component="img"
-                    sx={{
-                      // height: 233,
-                      // width: 350,
-                      maxHeight: { xs: '100%', md: '75%' },
-                      maxWidth: { xs: '100%', md: '75%' },
-                    }}
-                    src={data.urlToImage}
-                    alt={data.title}
-                  />
+                <Grid item xs={12}>
+                  <Typography sx={{}}> Author : {data.author}</Typography>
+                </Grid>
+                <Box
+                  component="img"
+                  sx={{
+                    // height: 233,
+                    // width: 350,
+                    maxHeight: { xs: '100%', md: '75%' },
+                    maxWidth: { xs: '100%', md: '75%' },
+                  }}
+                  src={data.urlToImage}
+                  alt={data.title}
+                />
 
-                  <Typography variant="h5">{data.title}</Typography>
-                  <Grid item xs={12} md={12}>
-                    <Typography variant="body2" color="text.secondary">
-                      {data.content}
-                    </Typography>
-                  </Grid>
-                </Card>
+                <Typography variant="h5">{data.title}</Typography>
+                <Grid item xs={12} md={12}>
+                  <Typography variant="body2" color="text.secondary">
+                    {data.content}
+                  </Typography>
+                </Grid>
               </Grid>
               <Grid xs={12} md={2}>
-                <Card sx={{ mt: 3 }} margin="normal">
-                  <a href={data.url} target="_blank" rel="noreferrer">
-                    <Typography variant="caption" component="h2">
-                      source : {data.source.name}
-                    </Typography>
-                  </a>
-                  <Typography variant="caption">
-                    Published at : {localDate(data.publishedAt)}
+                <a href={data.url} target="_blank" rel="noreferrer">
+                  <Typography variant="caption" component="h2">
+                    source : {data.source.name}
                   </Typography>
-                </Card>
+                </a>
+                <Typography variant="caption">
+                  Published at : {localDate(data.publishedAt)}
+                </Typography>
               </Grid>
               <Grid item xs={12} md={12}></Grid>
             </Grid>

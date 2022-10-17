@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Link from '@mui/material/Link';
@@ -23,8 +22,6 @@ export default function Login() {
     event.preventDefault();
     dispatch(login({ email: email, value: apiToken, userLoggedin: true }));
     navigate('main');
-
-    // console.log(email, apiToken);
   };
 
   return (
@@ -72,6 +69,7 @@ export default function Login() {
             }
           />
           <Button
+            disabled={email.length === 0 || apiToken.length === 0}
             type="submit"
             fullWidth
             variant="contained"

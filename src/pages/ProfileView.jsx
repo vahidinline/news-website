@@ -13,12 +13,13 @@ const ProfileView = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const [apiToken, setApiToken] = React.useState('');
-  const [userEmail, setUserEmail] = React.useState('');
-  const [userName, setUserName] = React.useState('');
+  const [apiToken, setApiToken] = React.useState(value);
+  const [userEmail, setUserEmail] = React.useState(email);
+  const [userName, setUserName] = React.useState(name);
   const handleSubmit = (event) => {
     // console.log(email, apiToken);
     dispatch(login({ name: userName, value: apiToken, email: userEmail }));
+    navigate('/main');
   };
 
   return (
@@ -60,11 +61,12 @@ const ProfileView = () => {
         />
 
         <Button
+          disabled={userEmail === '' || apiToken === '' || userName === ''}
           type="submit"
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}>
-          Update{' '}
+          Update
         </Button>
       </Box>
     </Container>

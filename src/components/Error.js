@@ -7,13 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 export default function Error(props) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const { message } = props;
+  const { message, open, handleClose } = props;
   return (
     <div>
       <Dialog
