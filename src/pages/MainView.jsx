@@ -28,10 +28,10 @@ const MainView = () => {
   const [keyword, setKeyword] = useState('us');
   const searchMode = [
     {
-      top: `https://newsapi.org/v2/top-headlines?country=us&apiKey=${value}`,
+      top: `http://newsapi.org/v2/top-headlines?country=us&apiKey=${value}`,
     },
     {
-      search: `https://newsapi.org/v2/everything?q=${keyword}&apiKey=${value}`,
+      search: `http://newsapi.org/v2/everything?q=${keyword}&apiKey=${value}`,
     },
   ];
 
