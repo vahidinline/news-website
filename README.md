@@ -1,8 +1,6 @@
-
 # News Website
 
-It should be a way to let user to use their own API from https://newsapi.org/ to get news. 
-
+It should be a way to let user to use their own API from https://newsapi.org/ to get news.
 
 ## Installation
 
@@ -11,43 +9,35 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-    Description: am API based platform to fetch, show and filter news based on Language and keywords
-
+Description: am API based platform to fetch, show and filter news based on Language and keywords
 
 ## Authors
 
 - [@vahidinline](https://www.github.com/vahidinline)
-
 
 ## Documentation
 
 To fetch data from News API (https://newsapi.org/docs/authentication) I used axios
 Yo store Data (user API token and user email) Redux has been implemented.
 To keep data stored, Redux persist has been used.
- 
-
 
 ## Features
 
-- Light/dark mode toggle
 - Fetch news on load by Axios
 - Responsive design by MUI
 - Redux toolkit
-- redux  persist
+- redux persist
 - react router dom 6
-
-
-
 
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-
 ## Demo
 
-Video Demo: 
+Video Demo:
 https://streamable.com/f8bnma
+
 ## Run Locally
 
 Clone the project
@@ -73,4 +63,3 @@ Start the server
 ```bash
   npm start
 ```
-

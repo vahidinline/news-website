@@ -10,12 +10,13 @@ import { useSelector } from 'react-redux';
 import Logout from './Logout';
 
 export default function Navbar() {
+  const { name } = useSelector((state) => state.token.user);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            News for {name}
           </Typography>
           <Button color="inherit">
             <Link

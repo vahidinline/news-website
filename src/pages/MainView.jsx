@@ -17,6 +17,8 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Error from '../components/Error';
+import { sourceData } from '../api/sourceData';
+console.log(sourceData);
 const localDate = (e) => {
   const localDate = new Date(e);
   return localDate.toLocaleString();
@@ -81,13 +83,16 @@ const MainView = () => {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={keyword}
+          size="small"
           label="Language"
           onChange={handleChange}>
-          <MenuItem value="ca">CA</MenuItem>
-          <MenuItem value="il">IL</MenuItem>
-          <MenuItem value="jp">JP</MenuItem>
-          <MenuItem value="us">US</MenuItem>
-          <MenuItem value="ru">RU</MenuItem>
+          {sourceData.map((e) => {
+            return (
+              <MenuItem value={e.alpha2} key={e.id}>
+                {e.name}
+              </MenuItem>
+            );
+          })}
         </Select>
       </Grid>
       <Grid container justifyContent="center">
@@ -106,7 +111,7 @@ const MainView = () => {
                 alt={e.title}
               />
               <Link
-                style={{ textDecoration: 'none', color: 'black' }}
+                style={{ textDecoration: 'none', color: 'gray' }}
                 to={`/story/:${i}`}
                 state={{ data: e }}
                 className="link">
