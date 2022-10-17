@@ -3,7 +3,7 @@ import { Container } from '@mui/system';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { login, logout } from '../redux/userAPI';
+import { login } from '../redux/userAPI';
 
 const ProfileView = () => {
   const { email } = useSelector((state) => state.token.user);

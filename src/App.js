@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import MainView from './pages/MainView';
 import ProfileView from './pages/ProfileView';
 import StoryView from './pages/StoryView';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 function App() {
