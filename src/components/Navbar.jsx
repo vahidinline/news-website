@@ -7,16 +7,15 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import {} from 'react-redux';
 import { useSelector } from 'react-redux';
+import Logout from './Logout';
 
 export default function Navbar() {
-  const { name } = useSelector((state) => state.token.user);
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News for {name}
+            News
           </Typography>
           <Button color="inherit">
             <Link
@@ -30,6 +29,7 @@ export default function Navbar() {
               Main
             </Link>
           </Button>
+          <Logout />
         </Toolbar>
       </AppBar>
     </Box>

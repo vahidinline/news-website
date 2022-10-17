@@ -6,7 +6,7 @@ export const tokenSlice = createSlice({
     user: {
       value: '',
       email: '',
-      name: 'user',
+      name: '',
     },
   },
   reducers: {
@@ -16,7 +16,7 @@ export const tokenSlice = createSlice({
       state.user.name = action.payload.name;
     },
     logout: (state) => {
-      state.user = null;
+      state.user.value = null;
     },
   },
 });

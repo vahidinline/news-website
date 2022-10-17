@@ -1,16 +1,11 @@
-import { ExpandMore } from '@mui/icons-material';
 import {
   Avatar,
   Card,
-  CardActions,
   CardContent,
   CardHeader,
   CardMedia,
   Grid,
   IconButton,
-  ListItem,
-  ListItemButton,
-  ListItemText,
   MenuItem,
   Select,
   TextField,
@@ -20,10 +15,13 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Error from '../components/Error';
 
 const MainView = () => {
   const [news, setNews] = useState([]);
   const { value } = useSelector((state) => state.token.user);
+  const [error, setError] = useState(false);
+  const [msg, setMsg] = useState('');
   // const { email } = useSelector((state) => state.token.user.email);
   const [keyword, setKeyword] = useState('us');
   const searchMode = [
@@ -42,7 +40,8 @@ const MainView = () => {
         setNews(e.data.articles);
       })
       .catch((e) => {
-        console.log(e);
+        setError(true);
+        setMsg(e.message);
       });
   };
   useEffect(() => {
@@ -55,6 +54,7 @@ const MainView = () => {
 
   return (
     <div>
+      <Error open={error} handleClose={false} message={msg} />;
       <Grid sx={{ mt: 3 }}>
         <TextField
           id="search-bar"
@@ -80,11 +80,10 @@ const MainView = () => {
           <MenuItem value="ru">RU</MenuItem>
         </Select>
       </Grid>
-
       <Grid container justifyContent="center">
         {news.map((e, i) => {
           return (
-            <Card sx={{ maxWidth: 350, m: 1 }}>
+            <Card key={i} sx={{ maxWidth: 350, m: 1 }}>
               <CardMedia
                 component="img"
                 sx={{

@@ -7,21 +7,18 @@ import ProfileView from './pages/ProfileView';
 import StoryView from './pages/StoryView';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-const ProtectedRoute = ({ user, redirectPath = '/' }) => {
-  if (!user) {
-    return <Navigate to={redirectPath} replace />;
-  }
 
-  return <Outlet />;
-};
 function App() {
-  const { value } = useSelector((state) => state.token.user);
+  const { user } = useSelector((state) => state.token);
+  console.log(user);
 
-  const [user, setUser] = React.useState(null);
-  useEffect(() => {
-    setUser(value);
-  }, [value]);
-
+  const ProtectedRoute = ({ userLoggedin, redirectPath = '/' }) => {
+    if (user.value === '' || user.value === null) {
+      return <Navigate to={redirectPath} replace />;
+    } else {
+      return <Outlet />;
+    }
+  };
   return (
     <div className="App">
       <Navbar />

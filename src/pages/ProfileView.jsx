@@ -1,9 +1,9 @@
-import { Box, Button, Grid, TextField, Typography } from '@mui/material';
+import { Box, Button, Grid, TextField } from '@mui/material';
 import { Container } from '@mui/system';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../redux/userAPI';
+import { login, logout } from '../redux/userAPI';
 
 const ProfileView = () => {
   const { email } = useSelector((state) => state.token.user);
@@ -17,9 +17,6 @@ const ProfileView = () => {
   const [userEmail, setUserEmail] = React.useState('');
   const [userName, setUserName] = React.useState('');
   const handleSubmit = (event) => {
-    event.preventDefault();
-    navigate(`/main`);
-
     // console.log(email, apiToken);
     dispatch(login({ name: userName, value: apiToken, email: userEmail }));
   };
