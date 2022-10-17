@@ -11,9 +11,9 @@ export const tokenSlice = createSlice({
   },
   reducers: {
     login: (state, action) => {
-      state.user.value = action.payload;
-      state.user.email = action.payload;
-      state.user.name = action.payload;
+      state.user.value = action.payload.value;
+      state.user.email = action.payload.email;
+      state.user.name = action.payload.name;
     },
     logout: (state) => {
       state.user = null;

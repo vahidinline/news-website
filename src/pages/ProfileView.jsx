@@ -6,37 +6,49 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../redux/userAPI';
 
 const ProfileView = () => {
-  const { email } = useSelector((state) => state.token.user.email);
-  const { value } = useSelector((state) => state.token.user.value);
+  const { email } = useSelector((state) => state.token.user);
+  const { value } = useSelector((state) => state.token.user);
+  const { name } = useSelector((state) => state.token.user);
 
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const [name, setName] = React.useState('');
   const [apiToken, setApiToken] = React.useState('');
+  const [userEmail, setUserEmail] = React.useState('');
+  const [userName, setUserName] = React.useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
     navigate(`/main`);
 
     // console.log(email, apiToken);
-    dispatch(login({ name: name, value: apiToken }));
+    dispatch(login({ name: userName, value: apiToken, email: userEmail }));
   };
 
   return (
     <Container component="main" maxWidth="xs">
-      <Grid>
-        <Typography>{email}</Typography>
-      </Grid>
+      <Grid></Grid>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
         <TextField
           margin="normal"
           required
           fullWidth
-          id="email"
+          id="name"
           label="Email Address"
-          name="email"
+          name="name"
           autoFocus
-          onChange={(e) => setName(e.target.value)}
+          defaultValue={email}
+          onChange={(e) => setUserEmail(e.target.value)}
+        />
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          defaultValue={name}
+          name="name"
+          label="Name"
+          type="text"
+          onChange={(e) => setUserName(e.target.value)}
+          id="text"
         />
         <TextField
           margin="normal"
@@ -55,7 +67,7 @@ const ProfileView = () => {
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}>
-          Log In
+          Update{' '}
         </Button>
       </Box>
     </Container>

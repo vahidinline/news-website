@@ -1,10 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Grid, Typography } from '@mui/material';
+import { Breadcrumbs, Card, Grid, Typography } from '@mui/material';
 import { Box, Container } from '@mui/system';
 const theme = createTheme();
-
+const localDate = (date) => {
+  const localDate = new Date(date);
+  return localDate.toLocaleString();
+};
 const StoryView = (props) => {
   const location = useLocation();
   const data = location.state?.data;
@@ -12,33 +15,58 @@ const StoryView = (props) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg">
+        <Breadcrumbs aria-label="breadcrumb">
+          <Link underline="hover" color="inherit" to="/main">
+            Home
+          </Link>
+          <Typography color="text.primary" variant="body2">
+            {data.title}
+          </Typography>
+        </Breadcrumbs>
         <main>
           <Grid>
-            <Grid container spacing={5} sx={{ mt: 3 }}>
-              <Grid item xs={12} md={12}>
-                <Typography variant="h3">{data.title}</Typography>
-                <Typography variant="caption">{data.publishedAt}</Typography>
-                <Typography variant="body">Author : {data.author}</Typography>
+            <Grid container spacing={1} sx={{ mt: 3 }}>
+              <Grid item xs={12} md={10}>
+                <Card sx={{ mt: 2 }}>
+                  <Grid item xs={12}>
+                    <Typography sx={{}}> Author : {data.author}</Typography>
+                  </Grid>
+                  <Box
+                    component="img"
+                    sx={{
+                      // height: 233,
+                      // width: 350,
+                      maxHeight: { xs: '100%', md: '75%' },
+                      maxWidth: { xs: '100%', md: '75%' },
+                    }}
+                    src={data.urlToImage}
+                    alt={data.title}
+                  />
+
+                  <Typography variant="h5">{data.title}</Typography>
+                  <Grid item xs={12} md={12}>
+                    <Typography variant="body2" color="text.secondary">
+                      {data.content}
+                    </Typography>
+                  </Grid>
+                </Card>
               </Grid>
-            </Grid>
-            <Grid item xs={12} md={12}>
-              <Box
-                component="img"
-                sx={{
-                  height: 233,
-                  width: 350,
-                  maxHeight: { xs: 233, md: 167 },
-                  maxWidth: { xs: 350, md: 250 },
-                }}
-                src={data.urlToImage}
-                alt={data.title}
-              />
+              <Grid xs={12} md={2}>
+                <Card sx={{ mt: 3 }} margin="normal">
+                  <a href={data.url} target="_blank" rel="noreferrer">
+                    <Typography variant="caption" component="h2">
+                      source : {data.source.name}
+                    </Typography>
+                  </a>
+                  <Typography variant="caption">
+                    Published at : {localDate(data.publishedAt)}
+                  </Typography>
+                </Card>
+              </Grid>
+              <Grid item xs={12} md={12}></Grid>
             </Grid>
           </Grid>
 
-          <Grid item xs={12} md={12}>
-            <Typography variant="body1">{data.content}</Typography>
-          </Grid>
           <Grid>
             <Link to="/main">Back</Link>
           </Grid>

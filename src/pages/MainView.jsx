@@ -23,7 +23,7 @@ import { Link } from 'react-router-dom';
 
 const MainView = () => {
   const [news, setNews] = useState([]);
-  const { value } = useSelector((state) => state.token.user.value);
+  const { value } = useSelector((state) => state.token.user);
   // const { email } = useSelector((state) => state.token.user.email);
   const [keyword, setKeyword] = useState('us');
   const searchMode = [
@@ -81,13 +81,18 @@ const MainView = () => {
         </Select>
       </Grid>
 
-      <Grid container>
+      <Grid container justifyContent="center">
         {news.map((e, i) => {
           return (
-            <Card sx={{ maxWidth: 345, m: 1 }}>
+            <Card sx={{ maxWidth: 350, m: 1 }}>
               <CardMedia
                 component="img"
-                height="194"
+                sx={{
+                  height: 300,
+                  width: 400,
+                  maxHeight: { xs: 200, md: 300 },
+                  maxWidth: { xs: 400, md: 400 },
+                }}
                 image={e.urlToImage}
                 alt={e.title}
               />
@@ -99,7 +104,7 @@ const MainView = () => {
                 <CardHeader
                   avatar={
                     <Avatar
-                      sx={{ bgcolor: 'red', width: 100, height: 100 }}
+                      sx={{ bgcolor: 'red', width: 100, height: 100, m: 1 }}
                       variant="square"
                       aria-label="recipe">
                       {e.source.name}
@@ -116,10 +121,6 @@ const MainView = () => {
                   {e.description}
                 </Typography>
               </CardContent>
-              <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites"></IconButton>
-                <IconButton aria-label="share"></IconButton>
-              </CardActions>
             </Card>
           );
         })}

@@ -1,6 +1,6 @@
 import './App.css';
 import Login from './pages/Login';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 
 import MainView from './pages/MainView';
 import ProfileView from './pages/ProfileView';
